@@ -1,3 +1,13 @@
+// -*- coding: utf-8-unix -*-
+
+// Copyright (c) 2023 Daishi Mori (mori0091)
+//
+// This software is released under the MIT License.
+// See https://github.com/mori0091/tgc/blob/main/LICENSE
+//
+// GitHub tgc project
+// https://github.com/mori0091/tgc
+
 #include "utf8.h"
 
 #define UTF8_tail(c) (0x80 <= (c) && (c) < 0xBF)
