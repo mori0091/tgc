@@ -9,7 +9,7 @@
 // https://github.com/mori0091/tgc
 
 #define IMPLEMENT
-#include "cstring.h"
+#include "tgc/cstring.h"
 
 #include <assert.h>
 #include <stdio.h>

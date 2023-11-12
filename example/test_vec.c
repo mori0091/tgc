@@ -11,13 +11,12 @@
 #include <assert.h>
 #include <stdio.h>
 
-#include "primitive.h"
+#include "tgc/primitive.h"
 
 #define IMPLEMENT
 #define TYPES_FOR_VEC JUST(char, int)
 // #define TYPES_FOR_VEC JUST(PRIMITIVE_TYPES)
-#include "fmt/print.h" /* FIXME */
-#include "vec.h"
+#include "tgc/vec.h"
 
 FOREACH(use_Vec, EXTRACT_OR_DEFAULT(TYPES_FOR_VEC));
 

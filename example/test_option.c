@@ -10,10 +10,10 @@
 
 #include <assert.h>
 
-#include "primitive.h"
+#include "tgc/primitive.h"
 
 #define IMPLEMENT
-#include "option.h"
+#include "tgc/option.h"
 
 use_Option(int);
 

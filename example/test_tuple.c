@@ -8,9 +8,9 @@
 // GitHub tgc project
 // https://github.com/mori0091/tgc
 
-#include "tuple.h"
+#include "tgc/tuple.h"
 
-#include "core.h"
+#include "tgc/core.h"
 
 #include <assert.h>
 #include <stdio.h>

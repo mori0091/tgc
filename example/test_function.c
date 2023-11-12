@@ -9,8 +9,8 @@
 // https://github.com/mori0091/tgc
 
 #define IMPLEMENT
-#include "function.h"
-#include "primitive.h"
+#include "tgc/function.h"
+#include "tgc/primitive.h"
 
 #include <assert.h>
 #include <stddef.h>
