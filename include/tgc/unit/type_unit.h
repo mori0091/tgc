@@ -8,25 +8,17 @@
 // GitHub tgc project
 // https://github.com/mori0091/tgc
 
-#include "tgc/unit.h"
+#ifndef TGC_UNIT_TYPE_UNIT_H_
+#define TGC_UNIT_TYPE_UNIT_H_
 
-const Unit UNIT = {0};
+#include "tgc/copy.h"
 
-impl_Clone_for(Unit) {
-  return UNIT;
-}
+typedef struct {
+  char _; /* dummy (ISO C don't permit zero-sized struct) */
+} Unit;
 
-impl_Drop_for(Unit) {
-}
+extern const Unit UNIT;
 
-impl_Eq_for(Unit) {
-  return true;
-}
+def_Copy(Unit);
 
-impl_Debug_for(Unit) {
-  fmt_write(out, "()");
-}
-
-impl_Display_for(Unit) {
-  fmt_write(out, "()");
-}
+#endif // TGC_UNIT_TYPE_UNIT_H_

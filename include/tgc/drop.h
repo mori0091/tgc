@@ -21,20 +21,19 @@
 #define Drop(T) TYPE_NAME(Drop, TYPEOF(T))
 
 #define def_Drop(T)                                                      \
+  void FUNC_NAME(drop, Drop(T))(T * self);                               \
   def_trait(Drop(T)) { void (*drop)(T * self); }
 
 #define impl_Drop_for(T)                                                 \
-  void FUNC_NAME(drop, Drop(T))(T * self);                               \
   impl_trait(Drop(T)){.drop = FUNC_NAME(drop, Drop(T))};                 \
   void FUNC_NAME(drop, Drop(T))(T * self) /* {...} */
 
 // #define TYPES_FOR_DROP JUST(T1, T2, ...)
 #define GENERIC_DROP(x)                                                  \
-  (GENERIC_REDUNDANT((x), EXPAND, trait_Drop, DROP_INSTANCES()))
+  (GENERIC((x), EXPAND, trait_Drop, DROP_INSTANCES()))
 #define trait_Drop(T) (trait(Drop(T)))
 #define DROP_INSTANCES()                                                 \
-  SQUASH(EXTRACT_OR_DEFAULT(TYPES_FOR_DROP, ),                           \
-         APPLY(Vec, EXTRACT_OR_DEFAULT(TYPES_FOR_VEC)))
+  SQUASH(EXTRACT_OR_DEFAULT(TYPES_FOR_DROP, UNDEFINED))
 
 #define g_drop(x) GENERIC_DROP(x).drop(&x)
 

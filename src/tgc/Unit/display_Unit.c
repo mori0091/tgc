@@ -8,14 +8,8 @@
 // GitHub tgc project
 // https://github.com/mori0091/tgc
 
-#ifndef TGC_UNIT_H_
-#define TGC_UNIT_H_
+#include "tgc/unit.h"
 
-#include "tgc/unit/type_unit.h"
-
-#include "tgc/unit/eq_unit.h"
-
-#include "tgc/unit/debug_unit.h"
-#include "tgc/unit/display_unit.h"
-
-#endif // TGC_UNIT_H_
+impl_Display_for(Unit) {
+  fmt_write(out, "()");
+}

@@ -53,7 +53,10 @@
  * \param ... Element values.
  * \return    A Vec(T).
  */
-#define vecof(T, ...) vec_(((T[]){__VA_ARGS__}))
+#define vecof(T, ...) vecof_(T, ((T[]){__VA_ARGS__}))
+
+#define vecof_(T, a)                                                     \
+  (trait(Vec(T)).from(sizeof(a) / sizeof((a)[0]), (&(a)[0])))
 
 /**
  * Construct a Vec(T) initialized with the specified element values.
@@ -71,8 +74,9 @@
 
 // #define TYPES_FOR_VEC JUST(T1, T2, ...)
 
-#define GENERIC_VEC(x)  (GENERIC((x), EXPAND, trait_Vec, VEC_INSTANCES()))
-#define trait_Vec(T)    (trait(Vec(T)))
-#define VEC_INSTANCES() SQUASH(EXTRACT_OR_DEFAULT(TYPES_FOR_VEC, ))
+#define GENERIC_VEC(x) (GENERIC((x), EXPAND, trait_Vec, VEC_INSTANCES()))
+#define trait_Vec(T)   (trait(Vec(T)))
+#define VEC_INSTANCES()                                                  \
+  SQUASH(EXTRACT_OR_DEFAULT(TYPES_FOR_VEC, UNDEFINED))
 
 #endif // TGC_VEC_H_

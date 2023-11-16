@@ -11,8 +11,9 @@
 #ifndef TGC_CSTR_H_
 #define TGC_CSTR_H_
 
-#include "tgc/cstr/eq_cstr.h"
 #include "tgc/cstr/type_cstr.h"
+
+#include "tgc/cstr/eq_cstr.h"
 
 #include "tgc/cstr/debug_cstr.h"
 #include "tgc/cstr/display_cstr.h"

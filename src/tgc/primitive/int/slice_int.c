@@ -8,7 +8,7 @@
 // GitHub tgc project
 // https://github.com/mori0091/tgc
 
-#include "tgc/primitive.h"
+#include "tgc/prelude.h"
 
 #if defined(NEED_INT)
 impl_Slice(int);

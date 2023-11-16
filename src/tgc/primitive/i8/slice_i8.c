@@ -8,6 +8,6 @@
 // GitHub tgc project
 // https://github.com/mori0091/tgc
 
-#include "tgc/primitive.h"
+#include "tgc/prelude.h"
 
 impl_Slice(i8);

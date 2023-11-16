@@ -17,10 +17,6 @@
 #include "tgc/eq.h"
 #include "tgc/fmt/debug.h"
 #include "tgc/fmt/display.h"
-#include "tgc/slice.h"
-
-#include "cppmp/foreach.h"
-#include "cppmp/squash.h"
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -136,7 +132,6 @@ def_Display(PTR(CONST(char)));
   def_Eq(T);                                                             \
   def_Debug(T);                                                          \
   def_Display(T);                                                        \
-  def_Slice(T);                                                          \
   END_OF_STATEMENT
 
 FOREACH(def_, SQUASH(PRIMITIVE_TYPES));

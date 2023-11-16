@@ -45,19 +45,4 @@
   SQUASH(EXTRACT_OR_DEFAULT(TYPES_FOR_DISPLAY, ), int, char,             \
          Slice(char), Char, CStr, PTR(char), PTR(CONST(char)))
 
-// --------------------------------------------------------------------
-// def_Debug(Slice(char));
-// #if defined(IMPLEMENT)
-// impl_Debug_for(Slice(char)) {
-//   fmt_write(out, "\"%.*s\"", (int)self.len, self.ptr);
-// }
-// #endif
-
-// def_Display(Slice(char));
-//  #if defined(IMPLEMENT)
-//  impl_Display_for(Slice(char)) {
-//    fmt_write(out, "%.*s", (int)self.len, self.ptr);
-//  }
-//  #endif
-
 #endif // TGC_FMT_PRINT_H_
