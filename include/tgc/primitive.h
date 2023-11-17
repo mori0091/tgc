@@ -23,6 +23,44 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+// ---------------------------------------------------------------------
+#include <limits.h>
+
+#if INT_MAX == INT16_MAX
+static_assert(TYPEEQ(int, int16_t), "");
+#define TYPEOF_int JUST(int16_t)
+
+#elif INT_MAX == INT32_MAX
+static_assert(TYPEEQ(int, int32_t), "");
+#define TYPEOF_int JUST(int32_t)
+
+#elif INT_MAX == INT64_MAX
+static_assert(TYPEEQ(int, int64_t), "");
+#define TYPEOF_int JUST(int64_t)
+
+#else
+#define NEED_INT
+
+#endif
+
+#if SIZE_MAX == UINT16_MAX
+static_assert(TYPEEQ(size_t, uint16_t), "");
+#define TYPEOF_size_t JUST(uint16_t)
+
+#elif SIZE_MAX == UINT32_MAX
+static_assert(TYPEEQ(size_t, uint32_t), "");
+#define TYPEOF_size_t JUST(uint32_t)
+
+#elif SIZE_MAX == UINT64_MAX
+static_assert(TYPEEQ(size_t, uint64_t), "");
+#define TYPEOF_size_t JUST(uint64_t)
+
+#else
+#define NEED_SIZE_T
+
+#endif
+// ---------------------------------------------------------------------
+
 /**
  * A list of all typical primitive types except for type aliases.
  */
@@ -53,7 +91,22 @@
 /**
  * A list of typical primitive integer types.
  */
-#define INTEGER_TYPES i8, i16, i32, i64, u8, u16, u32, u64
+#define INTEGER_TYPES INT_TYPES, UINT_TYPES
+
+#if defined(NEED_INT)
+#define INT_TYPES STD_INT_TYPES, int
+#else
+#define INT_TYPES STD_INT_TYPES
+#endif
+
+#if defined(NEED_SIZE_T)
+#define UINT_TYPES STD_UINT_TYPES, usize
+#else
+#define UINT_TYPES STD_UINT_TYPES
+#endif
+
+#define STD_INT_TYPES  i8, i16, i32, i64
+#define STD_UINT_TYPES u8, u16, u32, u64
 
 /**
  * A list of typical primitive real floating-point number types.
@@ -106,11 +159,15 @@
 /**
  * Shorthand of `double`.
  */
-#define f64      double
+#define f64 double
 
-#define Ptr(T)   T*
+/** `T *` (pointer type). */
+#define Ptr(T) T*
+/** `T const` (const type). */
 #define Const(T) T const
-#define PTR(T)   TYPE_NAME(PTR, TYPEOF(T))
+/** Typename for `Ptr(T)`. */
+#define PTR(T) TYPE_NAME(PTR, TYPEOF(T))
+/** Typename for `Const(T)`. */
 #define CONST(T) TYPE_NAME(CONST, TYPEOF(T))
 
 /**
@@ -135,43 +192,5 @@ def_Display(PTR(CONST(char)));
   END_OF_STATEMENT
 
 FOREACH(def_, SQUASH(PRIMITIVE_TYPES));
-
-#include <limits.h>
-
-#if INT_MAX == INT16_MAX
-static_assert(TYPEEQ(int, int16_t), "");
-#define TYPEOF_int JUST(int16_t)
-
-#elif INT_MAX == INT32_MAX
-static_assert(TYPEEQ(int, int32_t), "");
-#define TYPEOF_int JUST(int32_t)
-
-#elif INT_MAX == INT64_MAX
-static_assert(TYPEEQ(int, int64_t), "");
-#define TYPEOF_int JUST(int64_t)
-
-#else
-#define NEED_INT
-def_(int);
-
-#endif
-
-#if SIZE_MAX == UINT16_MAX
-static_assert(TYPEEQ(size_t, uint16_t), "");
-#define TYPEOF_size_t JUST(uint16_t)
-
-#elif SIZE_MAX == UINT32_MAX
-static_assert(TYPEEQ(size_t, uint32_t), "");
-#define TYPEOF_size_t JUST(uint32_t)
-
-#elif SIZE_MAX == UINT64_MAX
-static_assert(TYPEEQ(size_t, uint64_t), "");
-#define TYPEOF_size_t JUST(uint64_t)
-
-#else
-#define NEED_SIZE_T
-def_(size_t);
-
-#endif
 
 #endif // TGC_PRIMITIVE_H_
