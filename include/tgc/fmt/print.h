@@ -25,7 +25,8 @@
 #define eprintln(...)     fprintln(stderr, __VA_ARGS__)
 #define eprint(...)       fprint(stderr, __VA_ARGS__)
 
-#define fprintln(fp, ...) fprint(fp, __VA_OPT__(__VA_ARGS__, ) "\n")
+// #define fprintln(fp, ...) fprint(fp, __VA_OPT__(__VA_ARGS__, ) "\n")
+#define fprintln(...)     fprint(__VA_ARGS__, "\n")
 #define fprint(fp, ...)   fprint_(fp, __VA_ARGS__)
 
 #define fprint_(fp, ...)                                                 \
